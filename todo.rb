@@ -53,14 +53,16 @@ class Todo
 
   def search
   end
-  
+
+
   def get_commands
     puts "Hello #{@username}"
     puts "What would you like to do?"
 
     puts "Available commands: new list, add items, mark, due, incomplete, 
     all, next, search"
-
+  end
+  
   command = gets.chomp
 
   case command 
@@ -81,7 +83,7 @@ t = Todo.new
 
 t.get_commands
 
-end
+
 
 
 
