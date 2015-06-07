@@ -14,19 +14,33 @@ class Todo
     list = gets.chomp
     @user.lists.create! title: list
     print "#{list}"
+    @user.add_item
   end
 
   def add_item
-    @user.item.create!
+    print "What would you like to add to the list? "
+    item = gets.chomp
+    @user.item.create! content: item
   end
   
   def mark
+    print "What item ID would you like to mark as complete? "
+    id = gets.chomp
+    m = @user.todo_items.find(id)
+    m.done = true
+    m.save
+    # note: need to add a done column to the items table
   end
 
   def due
   end
 
   def incomplete
+    print "These are the items that have not been completed"
+    d = done == false
+    i = @user.todo_items.where("#{d}")
+    print i
+    # note: need to add a done column to the items table
   end
 
   def all
