@@ -12,15 +12,17 @@ class Todo
   def add_list 
     print "Title of list? "
     list = gets.chomp
-    @user.lists.create! title: list
-    print "#{list}"
-    @user.add_item
+    newly_created_list = @user.lists.create! title: list
+    puts "#{list}"
+    add_item newly_created_list
   end
 
-  def add_item
+  def add_item list
     print "What would you like to add to the list? "
     item = gets.chomp
-    @user.item.create! content: item
+    # id = gets.chomp
+    # list = List.find(id)
+    list.items.create! content: item
   end
   
   def mark
@@ -61,21 +63,23 @@ class Todo
 
     puts "Available commands: new list, add items, mark, due, incomplete, 
     all, next, search"
-  end
   
-  command = gets.chomp
 
-  case command 
-    when "new list"
-      add_list
-    when "add items"
-      add_items
-    when "mark"
-    when "due"
-    when "incomplete"
-    when "all time"
-    else 
-      "I don't know what #{command} is"
+
+    command = gets.chomp
+
+    case command 
+      when "new list"
+        add_list
+      when "add items"
+        add_items
+      when "mark"
+      when "due"
+      when "incomplete"
+      when "all time"
+      else 
+        "I don't know what #{command} is"
+    end
   end
 end
 
